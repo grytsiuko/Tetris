@@ -3,9 +3,10 @@ import sys
 
 from settings import Settings
 from button import Button
+from game import Game
 
 
-class MultiPlay:
+class MultiPlayer:
 
     def __init__(self):
 
@@ -18,6 +19,9 @@ class MultiPlay:
                                   Settings.multi_screen_height * 0.9,
                                   'BACK TO MENU')
 
+        self.game1 = Game(self.screen, 0)
+        self.game2 = Game(self.screen, Settings.single_screen_width)
+
     def run(self):
 
         while True:
@@ -29,4 +33,3 @@ class MultiPlay:
                     if self.menu_button.rect.collidepoint(mouse):
                         return 'menu'
             pygame.display.flip()
-            # pygame.time.delay(20)

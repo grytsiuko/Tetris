@@ -20,11 +20,11 @@ class Menu:
         self.single_play_button = Button(self.screen,
                                          (Settings.single_screen_width - Settings.button_width) // 2,
                                          Settings.single_screen_height * 0.4,
-                                         'SINGLE PLAY')
+                                         'SINGLE PLAYER')
         self.multi_play_button = Button(self.screen,
                                         (Settings.single_screen_width - Settings.button_width) // 2,
                                         Settings.single_screen_height * 0.6,
-                                        'MULTI PLAY')
+                                        'MULTI PLAYER')
         self.exit_button = Button(self.screen,
                                   (Settings.single_screen_width - Settings.button_width) // 2,
                                   Settings.single_screen_height * 0.8,
@@ -39,10 +39,9 @@ class Menu:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     mouse = pygame.mouse.get_pos()
                     if self.single_play_button.rect.collidepoint(mouse):
-                        return 'single play'
+                        return 'single player'
                     elif self.multi_play_button.rect.collidepoint(mouse):
-                        return 'multi play'
+                        return 'multi player'
                     elif self.exit_button.rect.collidepoint(mouse):
                         sys.exit()
             pygame.display.flip()
-            # pygame.time.delay(20)
