@@ -11,7 +11,7 @@ class Main:
     def run():
         pygame.init()
         pygame.display.set_caption('Tetris')
-        switch_status = 'menu'
+        switch_status = 'single player'
 
         while True:
             if switch_status == 'menu':
