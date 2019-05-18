@@ -11,28 +11,29 @@ class Game:
         self.shift = shift
         self.field = Field(self.screen, self.shift + Settings.field_margin, Settings.field_margin)
 
-        self.score = 0
         self.high_score = 9718
 
         self.score_label = Settings.font.render('SCORE', 1, Settings.game_text_color)
         self.high_score_label = Settings.font.render('HIGHSCORE', 1, Settings.game_text_color)
         self.high_score_num = Settings.score_font.render(str(self.high_score), 1, Settings.game_text_color)
-        self.score_num = Settings.score_font.render(str(self.score), 1, Settings.game_text_color)
+        self.score_num = Settings.score_font.render(str(self.field.score), 1, Settings.game_text_color)
 
         self.timer = pygame.time.Clock()
         self.passed_time = 0
 
-    def refresh(self):
+    def next_step(self):
         self.passed_time += self.timer.tick()
         delay = Settings.game_delay
         if self.field.falling_figure.moving_fast:
             delay = Settings.game_short_delay
         if self.passed_time > delay:
-            self.score += 1
-            self.field.make_step()
             self.passed_time = 0
+            return True
+        return False
 
-        self.score_num = Settings.score_font.render(str(self.score), 1, Settings.game_text_color)
+    def refresh_labels(self):
+
+        self.score_num = Settings.score_font.render(str(self.field.score), 1, Settings.game_text_color)
 
         # show score and highscore labels
         self.screen.blit(self.score_label, (self.shift + Settings.field_width_with_margin +
@@ -50,6 +51,11 @@ class Game:
                                                (Settings.game_text_width - self.high_score_num.get_width()) / 2,
                                                Settings.single_screen_height * 0.55))
 
+    def refresh(self):
+
+        if self.next_step():
+            self.field.make_step()
+        self.refresh_labels()
         self.field.refresh()
 
     def check_event(self, event):
