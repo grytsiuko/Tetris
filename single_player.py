@@ -17,7 +17,7 @@ class SinglePlayer:
                                   Settings.single_screen_height * 0.9,
                                   'BACK TO MENU')
 
-        self.game = Game(self.screen, 0)
+        self.game = Game(self.screen, 0, pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN)
 
     def run(self):
 

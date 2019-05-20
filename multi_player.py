@@ -17,8 +17,8 @@ class MultiPlayer:
                                   Settings.multi_screen_height * 0.9,
                                   'BACK TO MENU')
 
-        self.game1 = Game(self.screen, 0)
-        self.game2 = Game(self.screen, Settings.single_screen_width)
+        self.game1 = Game(self.screen, 0, pygame.K_a, pygame.K_d, pygame.K_w, pygame.K_s)
+        self.game2 = Game(self.screen, Settings.single_screen_width, pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN)
 
     def run(self):
 

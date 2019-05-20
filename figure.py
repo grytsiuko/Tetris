@@ -13,11 +13,13 @@ class Figure:
         self.x = x + (Settings.field_cells_x // 2 - 2) * Settings.field_cells_size
         self.y = y
         self.template = Settings.figures_storage[Figure.get_random(len(Settings.figures_storage))]
-        self.rotate_status = Figure.get_random(len(self.template))
+        self.rotate_status = 0
+        # self.rotate_status = Figure.get_random(len(self.template))
         self.color = Settings.figures_colors[Figure.get_random(len(Settings.figures_colors))]
+        self.size = len(self.template[0])
         self.group = Group()
         self.reload_sprites()
-        self.moving_fast = False
+        self.move_delay = Settings.game_delay
 
     @staticmethod
     def get_random(a):
@@ -25,8 +27,8 @@ class Figure:
 
     def reload_sprites(self):
         self.group.empty()
-        for i in range(Settings.figures_size):
-            for k in range(Settings.figures_size):
+        for i in range(self.size):
+            for k in range(self.size):
                 if self.template[self.rotate_status][i][k]:
                     self.group.add(Square(self.x + k * Settings.field_cells_size,
                                           self.y + i * Settings.field_cells_size,
@@ -41,38 +43,41 @@ class Figure:
                 return True
         return False
 
+    def change_rotate_status(self, shift):
+        self.rotate_status = (self.rotate_status + shift + len(self.template)) % len(self.template)
+
     def rotate_clock_wise(self):
-        self.rotate_status = (self.rotate_status + 1) % len(self.template)
+        self.change_rotate_status(1)
         self.reload_sprites()
         if self.check_barriers():
-            self.rotate_status = (self.rotate_status - 1 + len(self.template)) % len(self.template)
+            self.change_rotate_status(-1)
             self.reload_sprites()
 
     def rotate_anti_clock_wise(self):
-        self.rotate_status = (self.rotate_status - 1 + len(self.template)) % len(self.template)
+        self.change_rotate_status(-1)
         self.reload_sprites()
         if self.check_barriers():
-            self.rotate_status = (self.rotate_status + 1) % len(self.template)
+            self.change_rotate_status(1)
             self.reload_sprites()
 
     def move_left(self):
         self.x -= Settings.field_cells_size
-        self.reload_sprites()
+        self.group.update(-Settings.field_cells_size, 0)
         if self.check_barriers():
             self.x += Settings.field_cells_size
-            self.reload_sprites()
+            self.group.update(Settings.field_cells_size, 0)
 
     def move_right(self):
         self.x += Settings.field_cells_size
-        self.reload_sprites()
+        self.group.update(Settings.field_cells_size, 0)
         if self.check_barriers():
             self.x -= Settings.field_cells_size
-            self.reload_sprites()
+            self.group.update(-Settings.field_cells_size, 0)
 
     def move_down(self):
         self.y += Settings.field_cells_size
-        self.reload_sprites()
+        self.group.update(0, Settings.field_cells_size)
 
     def move_up(self):
         self.y -= Settings.field_cells_size
-        self.reload_sprites()
+        self.group.update(0, -Settings.field_cells_size)

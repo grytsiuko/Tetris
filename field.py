@@ -21,33 +21,56 @@ class Field:
                                        Settings.field_width + 2 * Settings.field_border_width,
                                        Settings.field_height + 2 * Settings.field_border_width)
 
-        self.left_edge = Group()
-        self.right_edge = Group()
-        for i in range(Settings.field_cells_y):
-            self.left_edge.add(Square(x - Settings.field_cells_size,
-                                      y + i * Settings.field_cells_size))
-            self.right_edge.add(Square(x + Settings.field_cells_x * Settings.field_cells_size,
-                                       y + i * Settings.field_cells_size))
+        self.left_edge = Square(self.x - Settings.field_height,
+                                self.y,
+                                size=Settings.field_height)
+        self.right_edge = Square(self.x + Settings.field_cells_x * Settings.field_cells_size,
+                                 self.y,
+                                 size=Settings.field_height)
+        self.edges = Group()
+        self.edges.add(self.left_edge, self.right_edge)
 
-        self.falling_figure = Figure(self, self.x, self.y)
-        self.fallen = Fallen(self, self.x, self.y)
-        self.barriers = [self.left_edge, self.right_edge, self.fallen.group]
+        self.falling_figure = None
+        self.fallen = Fallen(self.screen, self.x, self.y)
+
+        self.barriers = [self.edges, self.fallen.group]
+
+        self.timer = pygame.time.Clock()
+        self.passed_time = 0
 
     def refresh(self):
-        pygame.draw.rect(self.screen, Settings.field_border_color, self.border, Settings.field_border_width)
-        self.falling_figure.draw()
+        self.update()
+        if self.falling_figure is not None:
+            self.falling_figure.draw()
         self.fallen.draw()
+        pygame.draw.rect(self.screen, Settings.field_border_color, self.border, Settings.field_border_width)
 
-    def make_step(self):
-        self.falling_figure.move_down()
+    def update(self):
+        if self.falling_figure is not None:
+            self.passed_time += self.timer.tick()
+            if self.passed_time > self.falling_figure.move_delay:
+                self.passed_time = 0
+                self.falling_figure.move_down()
+                self.check_landing()
+        elif self.fallen.moving_frames_left:
+            self.fallen.shift_down()
+        elif not self.fallen.available_to_move():
+            self.falling_figure = Figure(self, self.x, self.y)
+            self.passed_time = 0
+
+    def check_landing(self):
         if pygame.sprite.groupcollide(self.fallen.group, self.falling_figure.group, False, False):
             self.falling_figure.move_up()
-            self.score += Settings.game_score_landing
             self.add_figure_to_fallen()
-            self.falling_figure = Figure(self, self.x, self.y)
+            self.falling_figure = None
+            self.score += Settings.game_score_landing
+            self.fallen.check_rows()
+            rows_filled = len(self.fallen.removed_rows)
+            self.score += Settings.game_score_row[rows_filled]
 
     def add_figure_to_fallen(self):
         for square in self.falling_figure.group.sprites():
             row = (square.rect.y - self.x) // Settings.field_cells_size
             col = (square.rect.x - self.x) // Settings.field_cells_size
             self.fallen.matrix[row][col] = square
+            self.fallen.group.add(square)
