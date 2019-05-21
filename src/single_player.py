@@ -11,15 +11,15 @@ class SinglePlayer:
     def __init__(self):
 
         self.screen = pygame.display.set_mode((Settings.single_screen_width,
-                                               Settings.single_screen_height))
+                                               Settings.screen_height))
 
         self.menu_button = Button(self.screen,
                                   (Settings.single_screen_width - Settings.button_width) // 2,
-                                  Settings.single_screen_height * 0.9,
+                                  Settings.screen_height * 0.9,
                                   'BACK TO MENU')
 
         self.game = Game(self.screen, 0,
-                         pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN)
+                         pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN, pygame.K_SPACE)
 
     def run(self):
 

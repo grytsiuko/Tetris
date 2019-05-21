@@ -9,6 +9,7 @@ class Main:
 
     @staticmethod
     def run():
+
         pygame.init()
         pygame.display.set_caption('Tetris')
         switch_status = 'menu'

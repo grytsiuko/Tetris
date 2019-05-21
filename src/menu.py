@@ -10,25 +10,25 @@ class Menu:
     def __init__(self):
 
         self.screen = pygame.display.set_mode((Settings.single_screen_width,
-                                               Settings.single_screen_height))
+                                               Settings.screen_height))
 
         self.screen.blit(Settings.bg_image, (0, 0))
 
-        header = Settings.header_font.render('TETRIS', 1, Settings.header_color)
+        header = Settings.font_header.render('TETRIS', 1, Settings.font_color)
         self.screen.blit(header, ((Settings.single_screen_width - header.get_width()) / 2,
-                                  Settings.single_screen_height * 0.1))
+                                  Settings.screen_height * 0.1))
 
         self.single_play_button = Button(self.screen,
                                          (Settings.single_screen_width - Settings.button_width) // 2,
-                                         Settings.single_screen_height * 0.4,
+                                         Settings.screen_height * 0.4,
                                          'SINGLE PLAYER')
         self.multi_play_button = Button(self.screen,
                                         (Settings.single_screen_width - Settings.button_width) // 2,
-                                        Settings.single_screen_height * 0.6,
+                                        Settings.screen_height * 0.6,
                                         'MULTI PLAYER')
         self.exit_button = Button(self.screen,
                                   (Settings.single_screen_width - Settings.button_width) // 2,
-                                  Settings.single_screen_height * 0.8,
+                                  Settings.screen_height * 0.8,
                                   'EXIT')
 
     def run(self):

@@ -7,9 +7,8 @@ class Settings:
     high_score_file_name = '../data/high_score.dat'
 
     single_screen_width = 600
-    single_screen_height = 750
     multi_screen_width = single_screen_width * 2
-    multi_screen_height = single_screen_height
+    screen_height = 750
 
     field_width = 300
     field_height = 600
@@ -24,10 +23,11 @@ class Settings:
     field_cells_falling_shift = 1
     field_cells_falling_frames = field_cells_size // field_cells_falling_shift
 
-    game_text_color = (255, 255, 255)
-    game_text_width = single_screen_width - field_width_with_margin
+    game_side_width = single_screen_width - field_width_with_margin
     game_delay = 400
-    game_short_delay = 50
+    game_delay_short = 50
+    game_delay_reduction = 0.95
+    game_delay_steps = 10
     game_score_landing = 10
     game_score_row = [0, 100, 300, 600, 1000]
 
@@ -37,14 +37,18 @@ class Settings:
     button_bg_color = (30, 30, 30)
     button_border_color = (255, 255, 255)
 
+    alert_bg_color = (0, 0, 0)
+    alert_bg_alpha = 200
+    alert_label_margin = 0.05
+
     pygame.font.init()
     font = pygame.font.SysFont("Helvetica", 25)
-    header_font = pygame.font.SysFont("Helvetica", 140, bold=True)
-    score_font = pygame.font.SysFont("Helvetica", 70, bold=True)
-    header_color = (255, 255, 255)
+    font_header = pygame.font.SysFont("Helvetica", 140, bold=True)
+    font_medium = pygame.font.SysFont("Helvetica", 70, bold=True)
+    font_result = pygame.font.SysFont("Helvetica", 120, bold=True)
+    font_color = (255, 255, 255)
 
-    figures_size = 4
-    figures_colors = [
+    figure_colors = [
         (150, 0, 0),
         (0, 150, 0),
         (0, 0, 150),
@@ -52,6 +56,7 @@ class Settings:
         (150, 0, 150),
         (150, 150, 0),
     ]
+
     figures_storage = [
 
                 [
