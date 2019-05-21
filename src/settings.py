@@ -3,7 +3,8 @@ import pygame
 
 class Settings:
 
-    bg_image = pygame.image.load('images/bg.jpg')
+    bg_image = pygame.image.load('../img/bg.jpg')
+    high_score_file_name = '../data/high_score.dat'
 
     single_screen_width = 600
     single_screen_height = 750
@@ -21,6 +22,7 @@ class Settings:
     field_cells_y = field_height // field_cells_size
     field_cells_border_color = (255, 255, 255)
     field_cells_falling_shift = 1
+    field_cells_falling_frames = field_cells_size // field_cells_falling_shift
 
     game_text_color = (255, 255, 255)
     game_text_width = single_screen_width - field_width_with_margin

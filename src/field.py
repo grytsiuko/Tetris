@@ -9,7 +9,8 @@ from square import Square
 
 class Field:
 
-    def __init__(self, screen, x, y):
+    def __init__(self, game, screen, x, y):
+        self.game = game
         self.screen = screen
         self.x = x
         self.y = y
@@ -38,12 +39,16 @@ class Field:
         self.timer = pygame.time.Clock()
         self.passed_time = 0
 
+        self.pause = False
+
     def refresh(self):
-        self.update()
+        self.fallen.draw()
+        pygame.draw.rect(self.screen, Settings.field_border_color,
+                         self.border, Settings.field_border_width)
+        if not self.game.over:
+            self.update()
         if self.falling_figure is not None:
             self.falling_figure.draw()
-        self.fallen.draw()
-        pygame.draw.rect(self.screen, Settings.field_border_color, self.border, Settings.field_border_width)
 
     def update(self):
         if self.falling_figure is not None:
@@ -56,7 +61,12 @@ class Field:
             self.fallen.shift_down()
         elif not self.fallen.available_to_move():
             self.falling_figure = Figure(self, self.x, self.y)
+            self.check_game_over()
             self.passed_time = 0
+
+    def check_game_over(self):
+        if pygame.sprite.groupcollide(self.fallen.group, self.falling_figure.group, False, False):
+            self.game.over = True
 
     def check_landing(self):
         if pygame.sprite.groupcollide(self.fallen.group, self.falling_figure.group, False, False):
@@ -67,6 +77,7 @@ class Field:
             self.fallen.check_rows()
             rows_filled = len(self.fallen.removed_rows)
             self.score += Settings.game_score_row[rows_filled]
+            self.game.update_high_score()
 
     def add_figure_to_fallen(self):
         for square in self.falling_figure.group.sprites():

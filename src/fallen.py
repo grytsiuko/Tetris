@@ -1,6 +1,6 @@
-from settings import Settings
 from pygame.sprite import Group
 
+from settings import Settings
 from square import Square
 
 
@@ -54,7 +54,7 @@ class Fallen:
     def available_to_move(self):
         if len(self.removed_rows) == 0:
             return False
-        self.moving_frames_left = Settings.field_cells_size // Settings.field_cells_falling_shift
+        self.moving_frames_left = Settings.field_cells_falling_frames
         self.to_move = list()
         i = self.removed_rows.pop(-1)
         for row in range(i - 1, -1, -1):

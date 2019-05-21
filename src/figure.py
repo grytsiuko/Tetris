@@ -44,7 +44,8 @@ class Figure:
         return False
 
     def change_rotate_status(self, shift):
-        self.rotate_status = (self.rotate_status + shift + len(self.template)) % len(self.template)
+        self.rotate_status += shift + len(self.template)
+        self.rotate_status %= len(self.template)
 
     def rotate_clock_wise(self):
         self.change_rotate_status(1)

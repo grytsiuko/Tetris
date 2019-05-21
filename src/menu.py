@@ -9,7 +9,8 @@ class Menu:
 
     def __init__(self):
 
-        self.screen = pygame.display.set_mode((Settings.single_screen_width, Settings.single_screen_height))
+        self.screen = pygame.display.set_mode((Settings.single_screen_width,
+                                               Settings.single_screen_height))
 
         self.screen.blit(Settings.bg_image, (0, 0))
 
