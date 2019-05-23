@@ -14,7 +14,7 @@ you earn 100 points more for each of them
 1. Multi player right screen and Single player controls:
 
 	- left/right arrows - move left/right
-	- up arrow - rotate figure
+	- up arrow - rotate
 	- down arrow - hold to speed up
 	- space - pause
 
@@ -22,6 +22,6 @@ you earn 100 points more for each of them
 2. Multi player left screen controls:
 
 	- A/D - move left/right
-	- W- rotate figure
+	- W- rotate
 	- S - hold to speed up
 	- Esc - pause
