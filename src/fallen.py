@@ -20,6 +20,7 @@ class Fallen:
 
         self.to_move = list()
         self.removed_rows = list()
+        self.removed_stars = 0
         self.moving_frames_left = 0
 
     def init_matrix(self):
@@ -37,6 +38,7 @@ class Fallen:
 
     def check_rows(self):
 
+        self.removed_stars = 0
         for i in range(Settings.field_cells_y):
             filled = 0
             for k in range(Settings.field_cells_x):
@@ -47,6 +49,8 @@ class Fallen:
             if filled == Settings.field_cells_x:
                 self.removed_rows.append(i)
                 for k in range(Settings.field_cells_x):
+                    if self.matrix[i][k].star:
+                        self.removed_stars += 1
                     self.matrix[i][k].kill()
                     self.matrix[i][k] = None
 

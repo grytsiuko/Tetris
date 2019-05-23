@@ -2,7 +2,6 @@ import pygame
 
 
 class Settings:
-
     bg_image = pygame.image.load('../img/bg.jpg')
     high_score_file_name = '../data/high_score.dat'
 
@@ -29,7 +28,8 @@ class Settings:
     game_delay_reduction = 0.95
     game_delay_steps = 10
     game_score_landing = 10
-    game_score_row = [0, 100, 300, 600, 1000]
+    game_score_row = [0, 300, 1000, 2000, 4000]
+    game_score_star = 100
 
     button_width = 230
     button_height = 50
@@ -48,6 +48,9 @@ class Settings:
     font_result = pygame.font.SysFont("Helvetica", 120, bold=True)
     font_color = (255, 255, 255)
 
+    figure_star_probability = 0.2
+    figure_star_img = pygame.image.load('../img/star.png')
+    figure_star_img = pygame.transform.scale(figure_star_img, (field_cells_size, field_cells_size))
     figure_colors = [
         (150, 0, 0),
         (0, 150, 0),
@@ -59,7 +62,7 @@ class Settings:
 
     figures_storage = [
 
-                [
+        [
             [
                 [0, 1, 1],
                 [0, 1, 0],
@@ -202,6 +205,18 @@ class Settings:
         ],
 
         [
+            [
+                [1, 1],
+                [1, 1],
+            ],
+            [
+                [1, 1],
+                [1, 1],
+            ],
+            [
+                [1, 1],
+                [1, 1],
+            ],
             [
                 [1, 1],
                 [1, 1],

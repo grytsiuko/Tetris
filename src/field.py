@@ -89,12 +89,13 @@ class Field:
             self.fallen.check_rows()
             removed = len(self.fallen.removed_rows)
             self.game.score += Settings.game_score_row[removed]
+            self.game.score += Settings.game_score_star * self.fallen.removed_stars
             self.game.update_high_score()
 
     def add_figure_to_fallen(self):
 
         for square in self.falling_figure.group.sprites():
-            row = (square.rect.y - self.x) // Settings.field_cells_size
+            row = (square.rect.y - self.y) // Settings.field_cells_size
             col = (square.rect.x - self.x) // Settings.field_cells_size
             self.fallen.matrix[row][col] = square
             self.fallen.group.add(square)
