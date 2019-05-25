@@ -6,15 +6,15 @@ Here are some instructions.
 Windows:
 
 	- install python (https://www.python.org/downloads/release/python-373/)
-	- run windows_install.bat to install pygame
-	- run windows_run.bat to run the game
+	- run installers/windows.bat to install pygame
+	- run run.bat to run the game
 
 Linux:
 
-	- run linux_install.sh to install python and pygame
-	- run linux_run.sh to run the game
+	- run installers/linux.sh to install python and pygame
+	- run run.sh to run the game
 
 Mac:
 
-	- run mac_install.sh to install python and pygame
-	- run mac_run.sh to run the game
+	- run installers/mac.sh to install python and pygame
+	- run run.sh to run the game

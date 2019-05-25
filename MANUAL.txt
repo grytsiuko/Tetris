@@ -22,6 +22,6 @@ you earn 100 points more for each of them
 2. Multi player left screen controls:
 
 	- A/D - move left/right
-	- W- rotate
+	- W - rotate
 	- S - hold to speed up
 	- Esc - pause
