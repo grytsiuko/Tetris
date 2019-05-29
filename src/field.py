@@ -1,10 +1,10 @@
 import pygame
 from pygame.sprite import Group
 
-from settings import Settings
-from figure import Figure
-from fallen import Fallen
-from square import Square
+from src.settings import Settings
+from src.figure import Figure
+from src.fallen import Fallen
+from src.square import Square
 
 
 class Field:

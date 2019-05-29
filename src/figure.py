@@ -3,8 +3,8 @@ import random
 import copy
 from pygame.sprite import Group
 
-from square import Square
-from settings import Settings
+from src.square import Square
+from src.settings import Settings
 
 
 class Figure:

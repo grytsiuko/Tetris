@@ -1,8 +1,8 @@
 import pygame
 import sys
 
-from settings import Settings
-from button import Button
+from src.settings import Settings
+from src.button import Button
 
 
 class Menu:

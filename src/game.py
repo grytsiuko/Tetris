@@ -1,8 +1,8 @@
 import pygame
 
-from alert import Alert
-from field import Field
-from settings import Settings
+from src.alert import Alert
+from src.field import Field
+from src.settings import Settings
 
 
 class Game:

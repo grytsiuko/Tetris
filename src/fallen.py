@@ -1,7 +1,7 @@
 from pygame.sprite import Group
 
-from settings import Settings
-from square import Square
+from src.settings import Settings
+from src.square import Square
 
 
 class Fallen:

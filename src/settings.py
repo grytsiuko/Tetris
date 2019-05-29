@@ -2,8 +2,8 @@ import pygame
 
 
 class Settings:
-    bg_image = pygame.image.load('../img/bg.jpg')
-    high_score_file_name = '../data/high_score.dat'
+    bg_image = pygame.image.load('img/bg.jpg')
+    high_score_file_name = 'data/high_score.dat'
 
     single_screen_width = 600
     multi_screen_width = single_screen_width * 2
@@ -49,7 +49,7 @@ class Settings:
     font_color = (255, 255, 255)
 
     figure_star_probability = 0.2
-    figure_star_img = pygame.image.load('../img/star.png')
+    figure_star_img = pygame.image.load('img/star.png')
     figure_star_img = pygame.transform.scale(figure_star_img, (field_cells_size, field_cells_size))
     figure_colors = [
         (150, 0, 0),

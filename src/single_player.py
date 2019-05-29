@@ -1,9 +1,9 @@
 import pygame
 import sys
 
-from settings import Settings
-from button import Button
-from game import Game
+from src.settings import Settings
+from src.button import Button
+from src.game import Game
 
 
 class SinglePlayer:

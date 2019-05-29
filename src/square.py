@@ -1,7 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
 
-from settings import Settings
+from src.settings import Settings
 
 
 class Square(Sprite):

@@ -1,8 +1,8 @@
 import pygame
 
-from menu import Menu
-from single_player import SinglePlayer
-from multi_player import MultiPlayer
+from src.menu import Menu
+from src.single_player import SinglePlayer
+from src.multi_player import MultiPlayer
 
 
 class Main:
@@ -24,6 +24,3 @@ class Main:
             elif switch_status == 'multi player':
                 multi_player = MultiPlayer()
                 switch_status = multi_player.run()
-
-
-Main.run()
